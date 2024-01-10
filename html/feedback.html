@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rating Page</title>
+    <style>
+        /* CSS for the rating page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 30px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .rating label:hover,
+        .rating input:checked  ~label {
+            color: orange;
+        }
+
+        .review {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .avg-rating {
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rating Page</h1>
+
+        <div class="rating">
+            <p style="text-align: center; font-weight: 300;">User rating 
+
+            <input type="radio" id="star5" name="star" onclick="rate(1)" value="1" />
+            <label for="star5">&#9733;</label>
+            <input type="radio" id="star4" name="star" onclick="rate(2)" value="2" />
+            <label for="star4">&#9733;</label>
+            <input type="radio" id="star3" name="star" onclick="rate(3)" value="3" />
+            <label for="star3">&#9733;</label>
+            <input type="radio" id="star2" name="star" onclick="rate(4)" value="4" />
+            <label for="star2">&#9733;</label>
+            <input type="radio" id="star1" name="star" onclick="rate(5)" value="5" />
+            <label for="star1">&#9733;</label>
+            </p>
+        </div>
+        
+        <div class="avg-rating">
+            <p>Average Rating: <span id="avgRating">0 </span> based on <span id="totalReviews">0 </span> reviews</p>
+        </div>
+        <div class="review">
+            
+          <p>5-Star Reviews: <span id="fiveStarReviews">0</span></p>
+          <p>4-Star Reviews: <span id="fourStarReviews">0</span></p>
+          <p>3-Star Reviews: <span id="threeStarReviews">0</span></p>
+          <p>2-Star Reviews: <span id="twoStarReviews">0</span></p>
+          <p>1-Star Reviews: <span id="oneStarReviews">0</span></p>
+        </div>
+
+        <div class="comment" style="margin-left:150px;">
+            <p>Give your valueable comment </p><textarea id="commentBox" rows="4" cols="50" placeholder="Enter your comment here"></textarea><br>
+            <button onclick="submitComment()">Submit</button>
+        </div>       
+    </div>
+
+    <script>
+         // JavaScript for the rating page
+        let totalReviews = parseInt(localStorage.getItem('totalReviews')) || 0;
+        let totalRating = parseInt(localStorage.getItem('totalRating')) || 0;
+        let fiveStarReviews = parseInt(localStorage.getItem('fiveStarReviews')) || 0;
+        let fourStarReviews = parseInt(localStorage.getItem('fourStarReviews')) || 0;
+        let threeStarReviews = parseInt(localStorage.getItem('threeStarReviews')) || 0;
+        let twoStarReviews = parseInt(localStorage.getItem('twoStarReviews')) || 0;
+        let oneStarReviews = parseInt(localStorage.getItem('oneStarReviews')) || 0;
+
+        const ratingInputs = document.querySelectorAll('input[name="star"]');
+        let selectedRating = null;
+
+        // Update stars color on input change
+        ratingInputs.forEach(input => {
+            input.addEventListener('change', () => {
+                selectedRating = input.value;
+
+                ratingInputs.forEach(star => {
+                    if (star.value <= selectedRating) {
+                        star.nextElementSibling.style.color = 'orange';
+                    } else {
+                        star.nextElementSibling.style.color = '#ccc';
+                    }
+                });
+            });
+        });
+
+        function rate(rating) {
+            totalReviews++;
+            totalRating += rating;
+            updateReview();
+            updateAvgRating();
+            updateIndividualRatings(rating);
+            localStorage.setItem('totalReviews', totalReviews);
+            localStorage.setItem('totalRating', totalRating);
+            localStorage.setItem('fiveStarReviews', fiveStarReviews);
+            localStorage.setItem('fourStarReviews', fourStarReviews);
+            localStorage.setItem('threeStarReviews', threeStarReviews);
+            localStorage.setItem('twoStarReviews', twoStarReviews);
+            localStorage.setItem('oneStarReviews', oneStarReviews);
+        }
+
+        function updateReview() {
+            document.getElementById("totalReviews").textContent = totalReviews;
+        }
+
+        function updateAvgRating() {
+            const avgRating = (totalRating / totalReviews).toFixed(1);
+            document.getElementById("avgRating").textContent = avgRating;
+        }
+
+        function updateIndividualRatings(rating) {
+            switch (rating) {
+                case 5:
+                    fiveStarReviews++;
+                    document.getElementById("fiveStarReviews").textContent = fiveStarReviews;
+                    break;
+                case 4:
+                    fourStarReviews++;
+                    document.getElementById("fourStarReviews").textContent = fourStarReviews;
+                    break;
+                case 3:
+                    threeStarReviews++;
+                    document.getElementById("threeStarReviews").textContent = threeStarReviews;
+                    break;
+                case 2:
+                    twoStarReviews++;
+                    document.getElementById("twoStarReviews").textContent = twoStarReviews;
+                    break;
+                case 1:
+                    oneStarReviews++;
+                    document.getElementById("oneStarReviews").textContent = oneStarReviews;
+                    break;
+            }
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            updateReview();
+            updateAvgRating();
+            document.getElementById("fiveStarReviews").textContent = fiveStarReviews;
+            document.getElementById("fourStarReviews").textContent = fourStarReviews;
+            document.getElementById("threeStarReviews").textContent = threeStarReviews;
+            document.getElementById("twoStarReviews").textContent = twoStarReviews;
+            document.getElementById("oneStarReviews").textContent = oneStarReviews;
+        });
+
+        function submitComment() {
+            const comment = document.getElementById('commentBox').value;
+            // Add your logic to handle the comment submission
+        }
+    </script>
+</body>
+</html>

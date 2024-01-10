@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object_Detection</title>
+    <!--Link To CSS file-->
+    <link rel="stylesheet" href="vision.css">
+    <!--Add Material icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <!--Add Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!--Add OpenCV-->
+    <script async src="opencv.js" onload="OpenCVReady()"></script>
+</head>
+<body>
+    <!--Main page-->
+    <div class="main-page">
+        <!--SideLine-->
+        <div class="side-line"></div>
+        <!--SideBar-->
+        <div class="side-bar">
+            <input type="file" id="image-upload" accept="image/*" style="display: none;">
+            <label for="image-upload" class="circle"><i class="material-icons" style="font-size: 36px; color:rgb(173, 20, 15)">cloud_upload</i></label>
+            <span class="circle" id="RGB-Image"><i class="material-icons" style="font-size: 30px; color:rgb(173, 20, 15)">palette</i></span>
+            <span class="circle" id="Gray-Scale-Image"><i class="material-icons" style="font-size: 30px; color:rgb(173, 20, 15)">contrast</i></span>
+            <span class="circle" id="Object-Detection-Image"><i class="material-icons" style="font-size: 30px; color:rgb(173, 20, 15)">fullscreen</i></span>
+            <span class="circle" id="Object-Detection-Video"><i class="material-icons" style="font-size: 30px; color:rgb(173, 20, 15)">video_camera_front</i></span>
+            <button id="enable-webcam-button">Enable Webcam</button>
+        </div>
+
+        <!--RightPanel-->
+        <div class="right-panel">
+            <!--Header-->
+            <div class="header">
+                <div class="empty-container"></div>
+                <h1>Object Detection</h1>
+                <img src="logo.png" width="90" height="30" alt="">
+            </div>
+            <!--Tablet Area-->
+            <div class="tabletcontainer">
+                <img id="tablet-image" src="tablet.jpg" width="680" height="520" alt="">
+               <!--Canvas-->
+              <canvas id="main-canvas">
+                 <img id="img-main" src="image2.jpg" width="640" height="480" alt="">
+                 <video id="webcam" autoplay src="" width="640" height="480"></video>
+              </canvas>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <!--Link to JS-->
+    <script src="vision.js"></script>
+    <!-- Load TensorFlow js this is required to use the COCO SSD Model -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+    <!-- Load the COCO SSD Model -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #15317e;
+      color:#f0dddd;
+    }
+
+    header {
+      background-color: #152b8d;
+      color: #fff;
+      text-align: center;
+      padding: 1em;
+    }
+
+    section {
+      margin: 2em;
+    }
+
+    h2 {
+      color: #fff;
+    }
+
+    .services, .testimonials, .contact, .message {
+      background-color: #3366FF;
+      padding: 1em;
+      margin-top: 1em;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgb(215, 217, 215);
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label, input, textarea {
+      display: block;
+      margin-bottom: 1em;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.5em;
+    }
+
+    button {
+      background-color: #fefdfd;
+      color: #131010;
+      padding: 0.5em 1em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><u>About Us</u></h1>
+  </header>
+
+  <section class="about">
+    <h2>Power Your TMS With Intelligent Routing</h2>
+    <p>Public commute such as buses and metro don't have useful information.
+        For example, if in-city buses had a system with information about
+         the exact number of standing and sitting seats in the next metro or bus,
+        then it would make using public transport very easy and amiable for citizens.
+        Assuming sensor data for seating is available on each vehicle and the vehicles can transmit data between each other, 
+        devise an algorithm that can tell users which vehicle to take.</p>
+  </section>
+
+  <section class="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Bus Information
+             <p>a.Total passangers</p>
+             <p>b.Bus location</p>
+    </li>
+    </ul>
+  </section>
+
+  <section class="testimonials">
+    <h2>Testimonials</h2>
+
+    <p> Our website and search optimization
+         that we have a dedicated team that now only works on project leads.<br>
+         we are able to gain real-time visiblity into our customr
+         debt and follow up on unpaid invoices if necessary<br>
+         Thanks to Upflow,..</p>
+  </section>
+
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>
+      Address: ABC Main Street Bangalore ,India <br>
+      Email: smartravel@yourcompany.com<br>
+      Phone: (+91) 63615-56789
+    </p>
+  </section>
+
+  <section class="message">
+    <h2>Message Us</h2>
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" name="subject" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+</body>
+</html>
